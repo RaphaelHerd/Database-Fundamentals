@@ -37,9 +37,9 @@ create table dbi.orders
 	qty	int,
 	dollars	dec(10,2),
 	primary key (ordno),
-	foreign key (cid) references dbi.customers,
-	foreign key (aid) references dbi.agents,
-	foreign key (pid) references dbi.products );
+	foreign key (cid) references dbi.customers(cid),
+	foreign key (aid) references dbi.agents(aid),
+	foreign key (pid) references dbi.products(pid) );
 
 -- Einfuegen aller Tupel aus der Beispieldatenbank
 insert into dbi.customers
@@ -113,11 +113,3 @@ insert into dbi.orders
 	values (1020, 'feb', 'c006', 'a03', 'p07', 600, 600.00);
 insert into dbi.orders
 	values (1024, 'mar', 'c006', 'a06', 'p01', 800, 400.00);
-
--- Rechtevergabe an allgemeine Nutzer
-grant select on dbi.customers to public;
-grant select on dbi.agents    to public;
-grant select on dbi.products  to public;
-grant select on dbi.orders    to public;
-
-commit;
